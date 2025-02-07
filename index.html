@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 28px;
+            color: #d6336c;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 10px;
+        }
+        #yes {
+            background-color: #ff69b4;
+            color: white;
+        }
+        #yes:hover {
+            background-color: #ff1493;
+        }
+        #no {
+            background-color: #ccc;
+            color: black;
+            position: absolute;
+        }
+        #image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            opacity: 0;
+            transition: opacity 4s ease-in-out; /* التحكم بالشفافية */
+        }
+        #valentine-img {
+            width: 300px;
+            border-radius: 10px;
+        }
+        .flower {
+            font-size: 40px;
+        }
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Will you be my Valentine? ❤️</h1>
+
+    <div class="container">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+
+    <div id="image-container">
+        <span class="flower">🌹</span>
+        <img id="valentine-img" src="" alt="Valentine">
+        <span class="flower">🌹</span>
+    </div>
+
+    <audio id="song" controls style="display: none;">
+        <source src="Kingston - Faye Webster.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const noButton = document.getElementById('no');
+        const yesButton = document.getElementById('yes');
+        const imgContainer = document.getElementById('image-container');
+        const valentineImg = document.getElementById('valentine-img');
+        const song = document.getElementById('song');
+
+        // رابط الصورة المرفوعة
+        valentineImg.src = 'IMG_8750.JPG';
+
+        // ضبط زر No ليكون بجانب Yes في البداية
+        noButton.style.position = 'static';
+
+        function moveButton() {
+            const container = document.querySelector('.container');
+            const maxX = 80; // المسافة الأفقية المحدودة
+            const maxY = 50; // المسافة العمودية المحدودة
+
+            const x = Math.random() * maxX - maxX / 2;
+            const y = Math.random() * maxY - maxY / 2;
+
+            noButton.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        noButton.addEventListener('mouseover', moveButton);
+
+        yesButton.addEventListener('click', () => {
+            imgContainer.style.opacity = '1'; // إظهار الصورة والورود تدريجيًا
+            song.style.display = 'block'; // إظهار الأغنية
+            song.play(); // تشغيل الأغنية
+        });
+    </script>
+<style>
+@media (max-width: 768px) {
+    h1 {
+        font-size: 20px;
+    }
+    button {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+    #valentine-img {
+        width: 200px; /* تقليل حجم الصورة */
+    }
+}  </style>
+</body>
+</html>
